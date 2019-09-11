@@ -67,7 +67,7 @@ li:last-child{
 #start{
     color: wheat;
     font-family: FZXIANGSU12;
-    width: 256px;
+    width: 320px;
     font-size: 64px;
     position:absolute;
     top:50%;
@@ -75,12 +75,11 @@ li:last-child{
     transform:translate(-50%,-160%);
     transition: all 0.2s linear;
     z-index: 1;
+    text-align: center;
 }
 #start:hover{
     font-size: 72px;
     opacity: 50%;
-    text-align: center;
     color: azure;
-    width: 298px;
     transition: all 0.2s linear;
 }

@@ -96,8 +96,11 @@ function snakeMove(){
         return;
     }
     getFood();
+    //根据蛇尾部的坐标将地图相应坐标的snake属性值置为0，将前进方向上下一格的地图坐标snake属性值设为1
     mapArr[snakeArr[snakeArr.length-1].x][snakeArr[snakeArr.length-1].y].snake=0;
     mapArr[snakeArr[0].x+snakeDirection[0]][snakeArr[0].y+snakeDirection[1]].snake=1;
+    
+    //蛇数组
     snakeArr[snakeArr.length-1].x=snakeArr[0].x+snakeDirection[0];
     snakeArr[snakeArr.length-1].y=snakeArr[0].y+snakeDirection[1];
     snakeArr.unshift(snakeArr.pop());
@@ -137,11 +140,15 @@ function getFood(){
 
 var s1=document.getElementById("acro");
 var $start=$('#start');
+var $restart=$('<p>输入回车或鼠标点击重新开始</p>');
 //游戏结束
 function gameOver(){
     clearInterval(interval);
     s1.play();
     $start.html("重新开始");
+    $('body').append($restart);
+    $restart.css({"color":"wheat","font-size":"12px", "position":"absolute","top":"50%",
+    "left":"50%","transform":"translate(-50%,120%)" });
     $start.show();
     for(let i=0;i<snakeArr.length;i++){
         mapArr[snakeArr[i].x][snakeArr[i].y].snake=0;
@@ -166,16 +173,19 @@ function score(n){
     $display.html(sum);
 }
 
+//输入回车
 function enterInput(){
     if(event.keyCode=='13'){
         $(document).unbind('keydown',enterInput);
         stuff();
 }}
 
+//游戏开始
 function stuff(){
     initSnake();
     produceFood();
     $start.hide();
+    $restart.remove();
     $('ul').show();
     $foodLayer.show();
     interval=setInterval("snakeMove()",speed);
@@ -184,9 +194,7 @@ function stuff(){
 var interval;var speed=80; var sum=0;
 $(function(){
     $('.snakeBody').hide();
-
     $(document).keydown(enterInput);
-
     $('#start').click(function(){
         $(document).unbind('keydown',enterInput);
         stuff();
