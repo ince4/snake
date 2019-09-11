@@ -1,0 +1,86 @@
+div{
+    margin: 0;
+    padding:0;
+}
+body{
+    background-color: black; 
+    display: inline-block;
+    overflow-y:hidden; 
+}
+#map{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    border: 5px double silver; 
+}
+#foodlayer{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    display: none;
+}
+.snakeBody{
+    background:whitesmoke;
+    position: absolute;
+    /* display: none; */
+}
+.food{
+    position: absolute;
+    background-color: aqua;
+} 
+
+@font-face { 
+    font-family: 'FZXIANGSU12'; 
+    src: url('../font/FZXIANGSU12.ttf'),
+    url('../font/FZXIANGSU12.svg'),
+    url('../font/FZXIANGSU12.eot');
+    } 
+ul{
+    width: 128px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(400px,-340px);
+    padding: 20px;
+    display: none;
+}
+li{
+    list-style: none;
+    color: whitesmoke;
+    font-family: FZXIANGSU12;
+    width: 128px;
+}
+li:first-child{
+    font-size: 32px;
+    /* font-weight: bold; */
+    
+}
+li:last-child{
+    font-size: 48px;
+    font-weight: bold;
+    color: brown;
+    text-align: center;
+    padding-top:20px;
+}
+#start{
+    color: wheat;
+    font-family: FZXIANGSU12;
+    width: 256px;
+    font-size: 64px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-160%);
+    transition: all 0.2s linear;
+    z-index: 1;
+}
+#start:hover{
+    font-size: 72px;
+    opacity: 50%;
+    text-align: center;
+    color: azure;
+    width: 298px;
+    transition: all 0.2s linear;
+}
