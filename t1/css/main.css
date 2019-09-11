@@ -1,3 +1,12 @@
+@font-face { 
+    font-family: 'FZXIANGSU12'; 
+    src: url('../font/FZXIANGSU12.TTF') format('truetype'),
+    url('../font/FZXIANGSU12.svg') format('svg'),
+    url('../font/FZXIANGSU12.oft'),
+    url('../font/FZXIANGSU12.woff'),
+    url('../font/FZXIANGSU12.woff2'),
+    url('../font/FZXIANGSU12.eot') format('embedded-opentype');
+    } 
 div{
     margin: 0;
     padding:0;
@@ -30,17 +39,6 @@ body{
     position: absolute;
     background-color: aqua;
 } 
-
-@font-face { 
-    font-family: 'FZXIANGSU12'; 
-    src: url('../font/FZXIANGSU12.TTF') format('truetype'),
-    url('../font/FZXIANGSU12.svg') format('svg'),
-    url('../font/FZXIANGSU12.oft'),
-    url('../font/FZXIANGSU12.woff'),
-    url('../font/FZXIANGSU12.woff2'),
-    url('../font/FZXIANGSU12.eot') format('embedded-opentype');
-    } 
- 
 ul{
     width: 128px;
     position:absolute;
