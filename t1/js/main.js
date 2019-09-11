@@ -199,6 +199,4 @@ $(function(){
         $(document).unbind('keydown',enterInput);
         stuff();
     })
-    
-
 })
