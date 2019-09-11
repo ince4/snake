@@ -1,8 +1,9 @@
 @font-face { 
     font-family: 'FZXIANGSU12'; 
-    src: url('../font/FZXIANGSU12.ttf') format('truetype'),
-    url('../font/FZXIANGSU12.oft'),
-    url('../font/FZXIANGSU12.woff');
+    src:url('../font/FZXIANGSU12.woff'),
+     url('../font/FZXIANGSU12.ttf') format('truetype'),
+    url('../font/FZXIANGSU12.oft');
+    
     } 
 div{
     margin: 0;
