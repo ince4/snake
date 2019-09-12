@@ -1,3 +1,9 @@
-<strong>jquery贪吃蛇小游戏</strong><br>https://ince4.github.io/snake/t1/snake.html
-<br>2019/09/11 解决了一些css布置上的问题 通过githubpage增加了演示
-<br>2019/09/05 初始版本 根据食物种类改变速度
+<strong>jquery贪吃蛇小游戏</strong><br>https://ince4.github.io/snake/t1/snake.html<br>
+2019/09/11 在原本游戏已有模式的基础上增加了新的“轻松模式”，为轻松模式制定了新的规则并将其实现。<br>
+<ul>
+  <li>蛇头碰到墙壁不会导致游戏结束，蛇身会从对边出现</li>
+  <li>蛇头碰到蛇身不会导致游戏结束，蛇身被蛇头碰到的部位到蛇尾的部分会消失</li>
+</ul>
+<br>
+2019/09/11 解决了一些css布置上的问题 通过githubpage增加了演示<br>
+2019/09/05 初始版本 根据食物种类改变速度
