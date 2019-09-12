@@ -7,6 +7,7 @@ https://ince4.github.io/snake/t1/snake.html<br>
   <li>蛇头碰到墙壁不会导致游戏结束，蛇身会从对边出现</li>
   <li>蛇头碰到蛇身不会导致游戏结束，蛇身被蛇头碰到的部位到蛇尾的部分会消失</li>
 </ul>
+修复了轻松模式下穿越墙壁时无法吃到对边上的水果的bug
 <br>
 <strong>2019/09/11</strong><br>
 解决了一些css布置上的问题 通过githubpage增加了演示<br>
