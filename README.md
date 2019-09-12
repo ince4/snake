@@ -1,4 +1,5 @@
-<strong>jquery贪吃蛇小游戏</strong><br>https://ince4.github.io/snake/t1/snake.html<br>
+<strong>jquery贪吃蛇小游戏</strong><br><br>
+https://ince4.github.io/snake/t1/snake.html<br>
 <strong>2019/09/11</strong><br>
 在原本游戏已有模式的基础上增加了新的“轻松模式”，现在可以在“经典模式”与“轻松模式”之中自由选择进行游戏。<br>
 为轻松模式制定了新的规则并将其实现。<br>
