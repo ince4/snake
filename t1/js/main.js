@@ -87,22 +87,54 @@ $(document).on("keydown",function(event){
             snakeDirection=[0,down];
         }break;
     }
-
+    if (snakeArr[0].x+snakeDirection[0]==snakeArr[1].x && snakeArr[0].y+snakeDirection[1]==snakeArr[1].y)
+    {snakeDirection[0]=-snakeDirection[0];snakeDirection[1]=-snakeDirection[1];}
 })
 
 //蛇根据snakeDirection方向前进
 function snakeMove(){
-    if(knockCheck()==1){
+    
+    if(knockCheck()==-1){
         return;
     }
     getFood();
-    //根据蛇尾部的坐标将地图相应坐标的snake属性值置为0，将前进方向上下一格的地图坐标snake属性值设为1
     mapArr[snakeArr[snakeArr.length-1].x][snakeArr[snakeArr.length-1].y].snake=0;
-    mapArr[snakeArr[0].x+snakeDirection[0]][snakeArr[0].y+snakeDirection[1]].snake=1;
     
-    //蛇数组
-    snakeArr[snakeArr.length-1].x=snakeArr[0].x+snakeDirection[0];
-    snakeArr[snakeArr.length-1].y=snakeArr[0].y+snakeDirection[1];
+    //经典模式
+    if(knockCheck()==0){
+        
+        //根据蛇尾部的坐标将地图相应坐标的snake属性值置为0，将前进方向上下一格的地图坐标snake属性值设为1
+        mapArr[snakeArr[0].x+snakeDirection[0]][snakeArr[0].y+snakeDirection[1]].snake=1;
+        //蛇数组
+        snakeArr[snakeArr.length-1].x=snakeArr[0].x+snakeDirection[0];
+        snakeArr[snakeArr.length-1].y=snakeArr[0].y+snakeDirection[1];
+    }
+    
+    //轻松模式
+    else if(knockCheck()==1){
+        //蛇数组
+        if( snakeArr[0].x+snakeDirection[0]>29||snakeArr[0].x+snakeDirection[0]<0){
+            snakeArr[snakeArr.length-1].x=mapW-1-snakeArr[0].x;
+            snakeArr[snakeArr.length-1].y=snakeArr[0].y;
+            
+            if( mapArr[mapW-1-snakeArr[0].x][snakeArr[0].y].snake == 1)
+            {
+                bite(mapW-1-snakeArr[0].x,snakeArr[0].y);
+            }
+            mapArr[mapW-1-snakeArr[0].x][snakeArr[0].y].snake = 1;
+        }
+        else if(snakeArr[0].y+snakeDirection[1]>29||snakeArr[0].y+snakeDirection[1]<0){
+            snakeArr[snakeArr.length-1].y=mapH-1-snakeArr[0].y;
+            snakeArr[snakeArr.length-1].x=snakeArr[0].x;
+
+            if( mapArr[snakeArr[0].x][mapH-1-snakeArr[0].y].snake == 1)
+            {
+                bite(snakeArr[0].x,mapH-1-snakeArr[0].y);
+            }
+            mapArr[snakeArr[0].x][mapH-1-snakeArr[0].y].snake = 1;
+        }   
+    }
+
     snakeArr.unshift(snakeArr.pop());
     $map.html("");
     drawSnake();
@@ -110,23 +142,50 @@ function snakeMove(){
 
 //判断蛇头是否撞到墙壁或咬到自己
 function knockCheck(){
-    if (snakeArr[0].x+snakeDirection[0]==snakeArr[1].x && snakeArr[0].y+snakeDirection[1]==snakeArr[1].y)
-    {snakeDirection[0]=-snakeDirection[0];snakeDirection[1]=-snakeDirection[1];
+    if( snakeArr[0].x+snakeDirection[0]>29 || snakeArr[0].y+snakeDirection[1]>29 ||
+    snakeArr[0].x+snakeDirection[0]<0 || snakeArr[0].y+snakeDirection[1]<0)
+        {
+        if (hOption=='classic'){
+            gameOver();
+            return -1;
+        }
+        else if(hOption=="easy"){
+            return 1;
+        }
     }
-    else if( snakeArr[0].x+snakeDirection[0]>29 || snakeArr[0].y+snakeDirection[1]>29 ||
-        snakeArr[0].x+snakeDirection[0]<0 || snakeArr[0].y+snakeDirection[1]<0){
-        gameOver();
-        return 1;
+    else if(mapArr[snakeArr[0].x+snakeDirection[0]][snakeArr[0].y+snakeDirection[1]].snake==1)
+    {
+         if (hOption=='classic'){
+            gameOver();
+            return -1;
+         }
+         else if(hOption=="easy"){
+            bite(snakeArr[0].x+snakeDirection[0],snakeArr[0].y+snakeDirection[1]);
+        }
     }
-    else if(mapArr[snakeArr[0].x+snakeDirection[0]][snakeArr[0].y+snakeDirection[1]].snake==1){
-        gameOver();
-        return 1;
+    return 0;
+}
+
+//
+function bite(tX,tY){
+    for(let i =0;i<snakeArr.length-1;i++){
+        if(snakeArr[i].x==tX && snakeArr[i].y==tY)
+        {
+            for(let j=i;j<snakeArr.length;j++)
+            {
+                snakeArr.length--;
+                mapArr[snakeArr[snakeArr.length-1].x][snakeArr[snakeArr.length-1].y].snake=0;
+            }
+            s1.play();
+        }
     }
 }
 
+
 //判断是否吃到食物
 function getFood(){
-    if (snakeArr[0].x+snakeDirection[0]==foodX && snakeArr[0].y+snakeDirection[1]==foodY){
+    if ( (snakeArr[0].x+snakeDirection[0]==foodX && snakeArr[0].y+snakeDirection[1]==foodY) ||
+        (snakeArr[0].x==foodX && snakeArr[0].y==foodY)){
         mapArr[foodX][foodY].food=0;
         snakeArr.push({x: snakeArr[snakeArr.length-1].x,y: snakeArr[snakeArr.length-1].y});
         
@@ -134,7 +193,7 @@ function getFood(){
         else if(fType==1){speedUp(20);score(10);}
         else if(fType==2){speedUp(150);score(1);}
         else if(fType==3){speedUp(40);score(5);}
-        produceFood();
+        produceFood();console.log(snakeArr.length);
     }
 }
 
@@ -147,7 +206,7 @@ function gameOver(){
     s1.play();
     $start.html("重新开始");
     $('body').append($restart);
-    $restart.css({"color":"wheat","font-size":"12px", "position":"absolute","top":"50%",
+    $restart.css({"color":"wheat","font-size":"12px", "position":"absolute","top":"48%",
     "left":"50%","transform":"translate(-50%,120%)" });
     $start.show();
     for(let i=0;i<snakeArr.length;i++){
@@ -187,9 +246,16 @@ function stuff(){
     $start.hide();
     $restart.remove();
     $('ul').show();
+    $('#choice').hide();
     $foodLayer.show();
     interval=setInterval("snakeMove()",speed);
 }
+
+//变更当前游戏难度
+var hOption='classic';
+$('input').click(function(){
+    hOption=$('input[name="difficulty"]:checked').val();
+})
 
 var interval;var speed=80; var sum=0;
 $(function(){
