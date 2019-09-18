@@ -57,12 +57,12 @@ li{
     font-family: FZXIANGSU12;
     width: 128px;
 }
-li:first-child{
+li:nth-child(odd){
     font-size: 32px;
     /* font-weight: bold; */
     
 }
-li:last-child{
+li:nth-child(even){
     font-size: 48px;
     font-weight: bold;
     color: brown;
@@ -102,7 +102,7 @@ li:last-child{
     top:50%;
     left:50%;
     margin: 0;
-    z-index: 5;
+    z-index: 10;
     transform:translate(-50%,180%);
 }
 #choice input{

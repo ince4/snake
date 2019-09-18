@@ -87,13 +87,12 @@ $(document).on("keydown",function(event){
             snakeDirection=[0,down];
         }break;
     }
-    if (snakeArr[0].x+snakeDirection[0]==snakeArr[1].x && snakeArr[0].y+snakeDirection[1]==snakeArr[1].y)
-    {snakeDirection[0]=-snakeDirection[0];snakeDirection[1]=-snakeDirection[1];}
 })
 
 //蛇根据snakeDirection方向前进
 function snakeMove(){
-    
+    if (snakeArr[0].x+snakeDirection[0]==snakeArr[1].x && snakeArr[0].y+snakeDirection[1]==snakeArr[1].y)
+    {snakeDirection[0]=-snakeDirection[0];snakeDirection[1]=-snakeDirection[1];}
     if(knockCheck()==-1){
         return;
     }
@@ -189,10 +188,9 @@ function getFood(){
         mapArr[foodX][foodY].food=0;
         snakeArr.push({x: snakeArr[snakeArr.length-1].x,y: snakeArr[snakeArr.length-1].y});
         
-        if(fType==0){speedUp(80);score(3);}
-        else if(fType==1){speedUp(20);score(10);}
-        else if(fType==2){speedUp(150);score(1);}
-        else if(fType==3){speedUp(40);score(5);}
+        else if(fType==1){speedUp(20);score(10,5);}
+        else if(fType==2){speedUp(150);score(1,1);}
+        else if(fType==3){speedUp(40);score(5,3);}
         produceFood();console.log(snakeArr.length);
     }
 }
@@ -203,6 +201,7 @@ var $restart=$('<p>输入回车或鼠标点击重新开始</p>');
 //游戏结束
 function gameOver(){
     clearInterval(interval);
+    clearInterval(timeOut);
     s1.play();
     $start.html("重新开始");
     $('body').append($restart);
@@ -213,6 +212,7 @@ function gameOver(){
         mapArr[snakeArr[i].x][snakeArr[i].y].snake=0;
     }
     mapArr[foodX][foodY].food=0;
+    $('#choice').show();
     $(document).keydown(enterInput);
 }
 
@@ -223,13 +223,27 @@ function speedUp(newSpeed){
  interval=setInterval("snakeMove()",speed);
 }
 
+//剩余游戏时间
+var $leftTime=$('li').eq(3);
+var timeLeft;
+function countDown(){
+    if (timeLeft<=0){
+        gameOver();
+        return;
+    }
+    timeLeft--;
+    $leftTime.html(timeLeft);
+};
+
 var $display=$('li').eq(1);
 var s2=document.getElementById("getpoint");
 //得分
-function score(n){
+function score(n,m){
     s2.play();
     sum+=n;
     $display.html(sum);
+    timeLeft+=m;
+    $leftTime.html(timeLeft);
 }
 
 //输入回车
@@ -238,6 +252,7 @@ function enterInput(){
         $(document).unbind('keydown',enterInput);
         stuff();
 }}
+
 
 //游戏开始
 function stuff(){
@@ -248,7 +263,10 @@ function stuff(){
     $('ul').show();
     $('#choice').hide();
     $foodLayer.show();
+    timeLeft=180;
+    $leftTime.html(timeLeft);
     interval=setInterval("snakeMove()",speed);
+    timeOut=setInterval("countDown()",1000);
 }
 
 //变更当前游戏难度
@@ -258,9 +276,11 @@ $('input').click(function(){
 })
 
 var interval;var speed=80; var sum=0;
+var timeOut;
+
 $(function(){
-    $('.snakeBody').hide();
     $(document).keydown(enterInput);
+    $('.snakeBody').hide();
     $('#start').click(function(){
         $(document).unbind('keydown',enterInput);
         stuff();
