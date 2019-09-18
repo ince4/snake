@@ -188,6 +188,7 @@ function getFood(){
         mapArr[foodX][foodY].food=0;
         snakeArr.push({x: snakeArr[snakeArr.length-1].x,y: snakeArr[snakeArr.length-1].y});
         
+        if(fType==0){speedUp(80);score(3,2);}
         else if(fType==1){speedUp(20);score(10,5);}
         else if(fType==2){speedUp(150);score(1,1);}
         else if(fType==3){speedUp(40);score(5,3);}
