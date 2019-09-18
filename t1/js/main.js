@@ -166,7 +166,7 @@ function knockCheck(){
     return 0;
 }
 
-//
+//bite
 function bite(tX,tY){
     for(let i =0;i<snakeArr.length-1;i++){
         if(snakeArr[i].x==tX && snakeArr[i].y==tY)
