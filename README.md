@@ -1,7 +1,5 @@
 <strong>jquery贪吃蛇小游戏</strong><br><br>
 https://ince4.github.io/snake/t1/snake.html<br><br>
-下一步目标：<br>
-加入结束游戏的按钮；加入达到一定条件后同时出现复数个食物的功能；加入具有新效果的食物<br>
 
 <br><strong>2019/09/18</strong><br>
 加入了倒计时功能，修复了开始游戏时回车键无效的bug<br>
@@ -17,4 +15,6 @@ https://ince4.github.io/snake/t1/snake.html<br><br>
 <br><strong>2019/09/11</strong><br>
 解决了一些css布置上的问题 通过githubpage增加了演示<br>
 <br><strong>2019/09/5</strong><br>
-初始版本 根据食物种类改变速度
+初始版本 根据食物种类改变速度<br>
+<strong>反思</strong><br>
+输入方面 两次不同的方向按键输入时间间隔过短时会出现无法转向的问题，据观察网络上部分js制作的贪吃蛇小游戏也出现了相同问题。暂未解决<br>
