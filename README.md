@@ -1,7 +1,6 @@
 <strong>jquery贪吃蛇小游戏</strong><br><br>
 https://ince4.github.io/snake/t1/snake.html<br><br>
-
-<br><strong>2019/09/18</strong><br>
+<strong>2019/09/18</strong><br>
 加入了倒计时功能，修复了开始游戏时回车键无效的bug<br>
 <br><strong>2019/09/11</strong><br>
 在原本游戏已有模式的基础上增加了新的“轻松模式”，现在可以在“经典模式”与“轻松模式”之中自由选择进行游戏。<br>
@@ -13,8 +12,8 @@ https://ince4.github.io/snake/t1/snake.html<br><br>
 修复了轻松模式下穿越墙壁时无法吃到对边上的水果的漏洞
 <br>
 <br><strong>2019/09/11</strong><br>
-解决了一些css布置上的问题 通过githubpage增加了演示<br>
+解决了一些css布置上的问题 学习使用通过githubpage增加了演示<br>
 <br><strong>2019/09/5</strong><br>
-初始版本 根据食物种类改变速度<br>
+初始版本 根据食物种类改变速度<br><br>
 <strong>反思</strong><br>
 输入方面 两次不同的方向按键输入时间间隔过短时会出现无法转向的问题，据观察网络上部分js制作的贪吃蛇小游戏也出现了相同问题。暂未解决<br>
