@@ -15,5 +15,3 @@ https://ince4.github.io/snake/t1/snake.html<br><br>
 解决了一些css布置上的问题 学习使用通过githubpage增加了演示<br>
 <br><strong>2019/09/5</strong><br>
 初始版本 根据食物种类改变速度<br><br>
-<strong>反思</strong><br>
-输入方面 两次不同的方向按键输入时间间隔过短时会出现无法转向的问题，据观察网络上部分js制作的贪吃蛇小游戏也出现了相同问题。暂未解决<br>
